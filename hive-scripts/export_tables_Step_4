@@ -1,0 +1,29 @@
+###Run this in your beeline.
+
+DROP TABLE IF EXISTS table_csv_export_data;
+
+CREATE TABLE table_csv_export_data
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE AS
+<your entire Hive QL Query here>;
+
+INSERT INTO table_csv_export_data
+<your entire Hive QL Query here>;
+
+
+DESCRIBE FORMATTED table_csv_export_data;
+
+
+
+### Run this in a new terminal by logging into your hdfs server
+
+ssh your_username@144.24.13.0
+hadoop fs -cat /path/to/table_csv_export_data/* > ~/name_your_csv_file.csv
+
+
+### Download CSV file to Local Machine
+
+scp your_username@144.24.13.0:/home/your_username/name_your_csv_file.csv ~/name_your_csv_file.csv
+
+
